@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+    <script>
+        console.log("BOANG")
+    </script>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        const products = [
+            {name: "Cotton Socks", price: 10},
+            {name: "T-Shirt", price: 8}
+        ];
+        
+        const productCost = (products[1].price * 2) + products[0].price ;
+        const shippingCost = 5 + productCost;
+        const totalCost = productCost + shippingCost;
+
+    const div = (
+        <div>
+                <h1>Product Cost: ${productCost} </h1>
+                <h1>Shipping Cost: ${shippingCost} </h1>
+                <h1>Total Cost: ${totalCost} </h1>
+                <button>Place your order</button>
+        </div>);
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(div);
+    </script>
+  </body>
+</html>
