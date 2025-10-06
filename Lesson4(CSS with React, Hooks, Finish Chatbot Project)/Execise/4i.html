@@ -2,53 +2,78 @@
 <html>
   <head>
     <title>React Basics</title>
+    <style>
+      body {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .counter-button {
+        background-color: rgb(25, 135, 84);
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+
+      .counter-container {
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+        background-color: rgb(200, 200, 200);
+        align-items: center;
+      }
+    </style>
   </head>
   <body>
     <div class="js-container"></div>
-
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-     
-      function Products({Title, Price, DiscountPrice}){
-        return(
+      function App() {
+        const [count, setCount] = React.useState(0)
+        const buttonRef = React.useRef()
+
+        function handleClick() {
+          setCount(count + 1)
+          console.log(count)
+        }
+
+        function resetClick() {
+          setCount(0)
+        }
+
+        function autoClick() {
+          setInterval(() => {
+            const buttonElem = buttonRef.current
+            if (buttonElem) {
+              buttonElem.click()
+            }
+          }, 1000)
+        }
+
+        return (
           <>
-          <div style={{border: '1px solid #ccc', padding: '8px', marginBottom: '8px', maxWidth: '200px'}}>
-             <p>{Title}</p>
-
-
-            {!DiscountPrice && (
-              <p>Price: ${Price}</p>
-            )}
-
-            {DiscountPrice && (
-              <>
-              <p><del>Price: ${Price}</del></p>
-              <p>Discount price: ${DiscountPrice}</p>
-              </>
-            )}
-
-            <button>Add to Cart</button>
-          </div>
+            <div className='counter-container'>
+              <button onClick={handleClick} ref={buttonRef} className='counter-button'>
+                Clicked {count} {count === 1 ? 'time' : 'times'}
+              </button>
+              <button onClick={resetClick} className='counter-button'>
+                Reset
+              </button>
+              <button onClick={autoClick} className='counter-button'>
+                Start Auto Click
+              </button>
+            </div>
           </>
-        );
+        )
       }
 
-     function App(){
-      return(
-       <>
-       <Products Title="Cotton Socks" Price={10.90} DiscountPrice={5.45} />
-       <Products Title="Tennis Ball" Price={6.00} />
-       <Products Title="Plain T-Shirt" Price={7.99} />
-       </>
-      );
-
-     }
-
-      const container = document.querySelector('.js-container');
-      ReactDOM.createRoot(container).render(<App />);
+      const container = document.querySelector('.js-container')
+      ReactDOM.createRoot(container).render(<App />)
     </script>
   </body>
 </html>

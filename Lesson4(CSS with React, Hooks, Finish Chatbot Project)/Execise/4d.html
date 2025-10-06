@@ -22,6 +22,18 @@
         margin-bottom: 5px;
         cursor: pointer;
       }
+
+      .btn-signin {
+        background-color: rgb(0, 123, 255);
+        color: white;
+        border: none;
+      }
+
+      .btn-signup {
+        background-color: rgb(0, 123, 255);
+        color: white;
+        border: none;
+      }
     </style>
   </head>
   <body>
@@ -37,8 +49,8 @@
             <div className='login-form'>
               <input type='text' placeholder='Type your Email' />
               <input type='password' placeholder='Type your password' />
-              <button>Sign In</button>
-              <button>Sign Up</button>
+              <button className='btn-signin'>Sign In</button>
+              <button className='btn-signup'>Sign Up</button>
             </div>
           </>
         )
@@ -47,7 +59,6 @@
       function App() {
         return (
           <>
-            <p>Hello, Welcome to my web</p>
             <LoginForm />
           </>
         )

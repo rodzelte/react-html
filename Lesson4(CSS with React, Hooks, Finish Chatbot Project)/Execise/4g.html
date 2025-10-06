@@ -5,38 +5,34 @@
   </head>
   <body>
     <div class="js-container"></div>
-
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
-
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-     
-      function Products({Title, Price, DiscountPrice}){
-        return(
-          <>
-          <div style={{border: '1px solid #ccc', padding: '8px', marginBottom: '8px', maxWidth: '200px'}}>
-             <p>{Title}</p>
-            <p>Discount Price: ${DiscountPrice}</p>
-            <button>Add to Cart</button>
-          </div>
-          </>
-        );
+      function LoginForm() {
+        const [day, setDay] = React.useState(dayjs().format('HH:mm:ss'))
+
+        React.useEffect(() => {
+          setInterval(() => {
+            setDay(dayjs().format('HH:mm:ss'))
+            console.log('run code')
+          }, 1000)
+        }, [])
+
+        return <>Current time: {day} </>
       }
 
-     function App(){
-      return(
-       <>
-       <Products Title="Cotton Socks" Price={10.90} DiscountPrice={5.45} />
-       <Products Title="Tennis Ball" Price={6.00} />
-       <Products Title="Plain T-Shirt" Price={7.99} />
-       </>
-      );
+      function App() {
+        return (
+          <>
+            <LoginForm />
+          </>
+        )
+      }
 
-     }
-
-      const container = document.querySelector('.js-container');
-      ReactDOM.createRoot(container).render(<App />);
+      const container = document.querySelector('.js-container')
+      ReactDOM.createRoot(container).render(<App />)
     </script>
   </body>
 </html>
